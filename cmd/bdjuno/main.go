@@ -13,10 +13,10 @@ import (
 
 	"github.com/forbole/bdjuno/v4/types/config"
 
-	archwayapp "github.com/MonikaCat/archway/v2/app"
 	"github.com/cosmos/cosmos-sdk/simapp"
 	"github.com/forbole/bdjuno/v4/database"
 	"github.com/forbole/bdjuno/v4/modules"
+	ixoapp "github.com/ixofoundation/ixo-blockchain/v2/app"
 )
 
 func main() {
@@ -56,7 +56,7 @@ func main() {
 func getBasicManagers() []module.BasicManager {
 	return []module.BasicManager{
 		simapp.ModuleBasics,
-		archwayapp.ModuleBasics,
+		ixoapp.ModuleBasics,
 	}
 }
 
@@ -65,6 +65,7 @@ func getBasicManagers() []module.BasicManager {
 // This should be edited by custom implementations if needed.
 func getAddressesParser() messages.MessageAddressesParser {
 	return messages.JoinMessageParsers(
+		customessageAddressesParser,
 		messages.CosmosMessageAddressesParser,
 	)
 }
